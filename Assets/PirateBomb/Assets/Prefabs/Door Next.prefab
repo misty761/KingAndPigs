@@ -152,6 +152,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1696759190411931099}
     m_Modifications:
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     - target: {fileID: 2114049803042619280, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -200,6 +208,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candle
       objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
 --- !u!4 &1110334460470883872 stripped
@@ -214,6 +230,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1696759190411931099}
     m_Modifications:
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     - target: {fileID: 2114049803042619280, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -261,6 +285,14 @@ PrefabInstance:
     - target: {fileID: 2114049803042619283, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_Name
       value: Candle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}

@@ -20,9 +20,15 @@ public class EnemyDetectPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hit")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dying")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
-            animator.SetTrigger("Attack");
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                animator.SetTrigger("Attack");
+            }
         }
+        
     }
 }

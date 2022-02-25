@@ -273,7 +273,7 @@ public class EnemyMove : MonoBehaviour
             timeTurnRandom = Random.Range(timeTurnMin, timeTurnMax);
             isLookingRight = !isLookingRight;
         }
-        
+
     }
 
     void MakeParticles(GameObject particles, float offsetX, float offsetY)
@@ -350,7 +350,13 @@ public class EnemyMove : MonoBehaviour
                     {
                         isLookingRight = true;
                     }
-                    animator.SetTrigger("Attack");
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hit")
+                        && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dying")
+                        && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+                    {
+                        animator.SetTrigger("Attack");
+                    }
+
                     //player.GetDamage(power);
                 }
                 // play hit top of enemy(attack from player)
@@ -413,7 +419,7 @@ public class EnemyMove : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        if (state != State.Die)
+        if (state != State.Die && health > 0f)
         {
             health -= damage;
 

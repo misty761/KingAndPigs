@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7004960384192218582}
   - component: {fileID: 6535471381131302843}
   - component: {fileID: 8027110631785093775}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 5640726816185133818}
   - component: {fileID: 5640726816185133819}
   - component: {fileID: 6687927780704314399}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2058355791
+  m_SortingLayerID: 821495377
   m_SortingLayer: 2
   m_SortingOrder: 60
   m_Sprite: {fileID: 2716264123495449617, guid: 852516d360fb7cb4799e5b32e1002445, type: 3}
@@ -205,7 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2288578620806770236}
   - component: {fileID: 4258930491143192517}
-  m_Layer: 16
+  m_Layer: 11
   m_Name: Collider for Deco
   m_TagString: Untagged
   m_Icon: {fileID: 0}

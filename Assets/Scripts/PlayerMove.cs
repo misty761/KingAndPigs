@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody2D mRigidbody;
     // jump
     public int forceJump = 150;
+    public int countJump;
     // ground
     public bool isGround;
     // falling
@@ -77,19 +78,23 @@ public class PlayerMove : MonoBehaviour
         isFalling = true;
         timeParticles = 0f;
         isJoystickdown = false;
+        countJump = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         // sprite(change sprite depanding on looking direction)
-        if (isLookingRight)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            transform.localScale = new Vector2(2, 2);
-        }
-        else
-        {
-            transform.localScale = new Vector2(-2, 2);
+            if (isLookingRight)
+            {
+                transform.localScale = new Vector2(2, 2);
+            }
+            else
+            {
+                transform.localScale = new Vector2(-2, 2);
+            }
         }
 
         // falling
@@ -150,10 +155,12 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            if (isGround)
+            if (countJump == 0)
             {
                 if (Input.GetKeyDown(KeyCode.Space) || buttonJump.isTouchDown)
                 {
+                    countJump++;
+
                     // button jump
                     buttonJump.isTouchDown = false;
 
@@ -364,6 +371,7 @@ public class PlayerMove : MonoBehaviour
                 SoundManager.instance.PlaySound(SoundManager.instance.audioThud, transform.position, SoundManager.instance.volumeThud);
 
                 isGround = true;
+                countJump = 0;
 
                 // particles
                 timeParticles = 0f;
@@ -372,6 +380,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
@@ -379,6 +388,7 @@ public class PlayerMove : MonoBehaviour
             isGround = true;
         }
     }
+    
 
     private void OnCollisionExit2D(Collision2D collision)
     {

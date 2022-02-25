@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 718250950217133191}
   - component: {fileID: 8553128907855233463}
   - component: {fileID: 452683496}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Attack Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3848620790947314319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384697071469451630}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3361478761421709194}
   - component: {fileID: 2942192769593274874}
   - component: {fileID: 5770942670843099023}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Detect Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4415342367025140744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384697071469451630}
@@ -271,7 +271,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: -0.065}
+  m_Offset: {x: 0, y: -0.065}
   m_Size: {x: 0.13, y: 0.14}
   m_Direction: 0
 --- !u!95 &1726400129
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfBar: {fileID: 3486750623046245679, guid: 1cc05b97bedd6324987bacab144f7567, type: 3}
   bar: {fileID: 0}
-  offsetX: 0.06
+  offsetX: -0.01
   offsetY: 0.2
   guage: {fileID: 0}
   goSource: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca76c817181fc1d438c772ef69c3ce11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.6
+  speed: 1
   pfParticlesRun: {fileID: 3336868156527315726, guid: a54f1c8cc2f3f604d899c0a73023c00c, type: 3}
   delayParticles: 0.7
   offsetParticlesRunX: 0.15
@@ -339,9 +339,9 @@ MonoBehaviour:
   pfHeart: {fileID: 6028904303271375923, guid: 5bb6e730b17bf5c4c98bdea5cf647377, type: 3}
   rateSpawnHeart: 0.1
   timeTurnMin: 1
-  timeTurnMax: 10
+  timeTurnMax: 5
   timeJumpMin: 1
-  timeJumpMax: 10
+  timeJumpMax: 3
   forceJumpMin: 250
   forceJumpMax: 400
   health: 0

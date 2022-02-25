@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2911b8e79ec76d4a8429504cbaa6a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetX: 0.15
+  offsetX: 0
   offsetY: -0.2
   audioDoor: {fileID: 8300000, guid: 814548ced58f62244a24b8fe7f0aa6bb, type: 3}
 --- !u!95 &1696759190411931098
@@ -127,6 +127,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1696759190411931099}
     m_Modifications:
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     - target: {fileID: 2114049803042619280, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -175,6 +183,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candle
       objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
 --- !u!4 &782083060533609032 stripped
@@ -189,6 +205,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1696759190411931099}
     m_Modifications:
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049802001172160, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
+      objectReference: {fileID: 0}
     - target: {fileID: 2114049803042619280, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -236,6 +260,14 @@ PrefabInstance:
     - target: {fileID: 2114049803042619283, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
       propertyPath: m_Name
       value: Candle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114049803460198621, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 821495377
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf47d36f2fd5c3c48a494af40d45041f, type: 3}
