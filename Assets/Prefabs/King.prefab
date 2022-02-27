@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 7679080022914136518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.62, y: -0.95, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 662447968}
   m_Father: {fileID: 0}
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1940895175
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: -2404568124248262052, guid: 80811dfc09802524cb2e2feab00cc35f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -204,7 +204,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.005, y: -0.02}
-  m_Size: {x: 0.16, y: 0.25}
+  m_Size: {x: 0.16, y: 0.24}
   m_Direction: 0
 --- !u!50 &3112555710449689135
 Rigidbody2D:
@@ -251,23 +251,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc49f23fe830bd46bf2563c37bea1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.7
   isLookingRight: 1
   isIdle: 1
   animator: {fileID: 148687923994233751}
   mRigidbody: {fileID: 3112555710449689135}
-  forceJump: 200
-  isGround: 1
+  forceJump: 150
+  countJump: 0
+  isGround: 0
   pfParticlesRun: {fileID: 3336868156527315726, guid: a54f1c8cc2f3f604d899c0a73023c00c, type: 3}
   delayParticles: 0.7
-  offsetParticlesRunX: 0.15
-  offsetParticlesRunY: -0.24
+  offsetParticlesRunX: 0.1
+  offsetParticlesRunY: -0.13
   pfParticlesJump: {fileID: 4831868863635563791, guid: 50f6f9b513854464384ac4cf7655d5a9, type: 3}
   offsetParticlesJumpX: 0
-  offsetParticlesJumpY: -0.15
+  offsetParticlesJumpY: -0.08
   pfParticlesFall: {fileID: 585199846013545015, guid: 2e7f3ad90e6b92c4388bfc4edad0965d, type: 3}
   offsetParticlesFallX: 0
-  offsetParticlesFallY: -0.23
+  offsetParticlesFallY: -0.11
   life: 3
   lifeMax: 3
   power: 0.5
@@ -289,3 +290,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 662447967}
+  audioAttack: {fileID: 8300000, guid: 260913e022cfc644180ac5ce48b5a60a, type: 3}

@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/PirateBomb/Assets/Scenes/Scene1.unity
-    guid: 7f0853eee4ffb9840a78f712e4512674
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Scene2.unity
     guid: 98d97bdcf9b23b340adc83cba37ab566
+  - enabled: 1
+    path: Assets/Scenes/Scene1.unity
+    guid: c1b0e95c12d6bd7478cfc91d5ba526a5
   m_configObjects: {}

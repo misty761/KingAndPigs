@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4415342367025140744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 384697071469451630}
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12, y: 0}
+  m_Offset: {x: -0.2, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.25}
+  m_Size: {x: 0.4, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &5770942670843099023
 MonoBehaviour:
@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 4832269816632131445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4817806, y: -0.8264824, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 718250950217133191}
   - {fileID: 3361478761421709194}
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1940895175
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 4571226829092849726, guid: 4c89ae1c3ab39c64a90f576ca866975e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   pfBar: {fileID: 3486750623046245679, guid: 1cc05b97bedd6324987bacab144f7567, type: 3}
   bar: {fileID: 0}
   offsetX: -0.01
-  offsetY: 0.2
+  offsetY: 0.1
   guage: {fileID: 0}
   goSource: {fileID: 0}
 --- !u!114 &1726400126
@@ -323,28 +323,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca76c817181fc1d438c772ef69c3ce11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.7
   pfParticlesRun: {fileID: 3336868156527315726, guid: a54f1c8cc2f3f604d899c0a73023c00c, type: 3}
   delayParticles: 0.7
-  offsetParticlesRunX: 0.15
-  offsetParticlesRunY: -0.28
+  offsetParticlesRunX: 0.07
+  offsetParticlesRunY: -0.12
   pfParticlesJump: {fileID: 4831868863635563791, guid: 50f6f9b513854464384ac4cf7655d5a9, type: 3}
-  offsetParticlesJumpY: -0.2
+  offsetParticlesJumpY: -0.07
   pfParticlesFall: {fileID: 585199846013545015, guid: 2e7f3ad90e6b92c4388bfc4edad0965d, type: 3}
-  offsetParticlesFallY: -0.25
+  offsetParticlesFallY: -0.11
   isLookingRight: 0
-  distSqrMove: 40
-  mRigidbody: {fileID: 0}
+  distSqrMove: 10
+  mRigidbody: {fileID: 1726400128}
   mass: 2
   pfHeart: {fileID: 6028904303271375923, guid: 5bb6e730b17bf5c4c98bdea5cf647377, type: 3}
-  rateSpawnHeart: 0.1
+  rateSpawnHeart: 0.05
   timeTurnMin: 1
-  timeTurnMax: 5
+  timeTurnMax: 3
   timeJumpMin: 1
   timeJumpMax: 3
-  forceJumpMin: 250
-  forceJumpMax: 400
-  health: 0
+  forceJumpMin: 200
+  forceJumpMax: 330
+  health: 0.9
   healthMax: 0.9
   power: 1
 --- !u!114 &1726400132

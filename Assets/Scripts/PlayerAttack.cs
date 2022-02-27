@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     Animator animator;
     ButtonAttack buttonAttack;
     public GameObject col;
+    public AudioClip audioAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,11 @@ public class PlayerAttack : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.DownArrow) || buttonAttack.isTouchDown)
                 {
+                    // sound
+                    SoundManager.instance.PlaySound(audioAttack, transform.position, 1f);
+                    // animation
                     animator.SetTrigger("Attack");
+                    // button
                     buttonAttack.isTouchDown = false;
                 }
             }

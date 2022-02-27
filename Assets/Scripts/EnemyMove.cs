@@ -126,13 +126,13 @@ public class EnemyMove : MonoBehaviour
         {
             if (isLookingRight)
             {
-                if (!isSpriteReverse) transform.localScale = new Vector2(-2, 2);
-                else transform.localScale = new Vector2(2, 2);
+                if (!isSpriteReverse) transform.localScale = new Vector2(-1, 1);
+                else transform.localScale = new Vector2(1, 1);
             }
             else
             {
-                if (!isSpriteReverse) transform.localScale = new Vector2(2, 2);
-                else transform.localScale = new Vector2(-2, 2);
+                if (!isSpriteReverse) transform.localScale = new Vector2(1, 1);
+                else transform.localScale = new Vector2(-1, 1);
             }
         }
 
@@ -425,6 +425,8 @@ public class EnemyMove : MonoBehaviour
 
             animator.SetFloat("Health", health);
             animator.SetTrigger("Damaged");
+            EnemyAttack attack = GetComponent<EnemyAttack>();
+            attack.FinishAttack();
 
             // die
             if (health <= 0f)

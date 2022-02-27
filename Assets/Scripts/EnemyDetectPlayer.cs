@@ -22,7 +22,8 @@ public class EnemyDetectPlayer : MonoBehaviour
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hit")
             && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dying")
-            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Dead")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {

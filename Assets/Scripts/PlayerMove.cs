@@ -89,11 +89,11 @@ public class PlayerMove : MonoBehaviour
         {
             if (isLookingRight)
             {
-                transform.localScale = new Vector2(2, 2);
+                transform.localScale = new Vector2(1, 1);
             }
             else
             {
-                transform.localScale = new Vector2(-2, 2);
+                transform.localScale = new Vector2(-1, 1);
             }
         }
 
@@ -312,8 +312,8 @@ public class PlayerMove : MonoBehaviour
 
     public void GetDamage(int damage)
     {
+        // return
         if (GameManager.instance.state == GameManager.State.GameOver) return;
-
         // life --
         life -= damage;
         if (life < 0) life =  0;
@@ -321,6 +321,9 @@ public class PlayerMove : MonoBehaviour
         // animator
         animator.SetInteger("Life", life);
         animator.SetTrigger("Damaged");
+        // disable 
+        PlayerAttack attack = GetComponent<PlayerAttack>();
+        attack.FinishAttack();
 
         if (life > 0)
         {
@@ -332,7 +335,6 @@ public class PlayerMove : MonoBehaviour
         {
             // sound
             SoundManager.instance.PlaySound(audioDie, transform.position, 1f);
-
             // game over
             GameManager.instance.GameOver();
         }
