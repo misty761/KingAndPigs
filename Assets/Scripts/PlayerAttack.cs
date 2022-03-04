@@ -38,11 +38,7 @@ public class PlayerAttack : MonoBehaviour
                     buttonAttack.isTouchDown = false;
                 }
             }
-            catch
-            {
-
-            }
-
+            catch { }
         }
     }
 

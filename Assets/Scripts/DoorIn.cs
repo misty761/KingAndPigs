@@ -53,12 +53,6 @@ public class DoorIn : MonoBehaviour
                 GameManager.instance.GoToTheNextScene();
             }
         }
-        /*
-        catch (Exception ex)
-        {
-            //Debug.LogException(ex);
-        }
-        */
         catch
         {
             //Debug.LogError("Exception!");

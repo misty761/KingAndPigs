@@ -28,6 +28,7 @@ public class EnemyAttackCollider : MonoBehaviour
         {
             // distance x
             float distX = enemy.transform.position.x - player.transform.position.x; // + : player is left of enemy.
+            player.mRigidbody.velocity = Vector2.zero;
             // add force to player
             if (distX > 0) player.mRigidbody.AddForce(new Vector2(-forceX, forceY));
             else player.mRigidbody.AddForce(new Vector2(forceX, forceY));

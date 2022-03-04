@@ -6,7 +6,7 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     // looking direction
-    bool isLookingRight;
+    public bool isLookingRight = false;
     // animator
     Animator animator;
     // spawn item
@@ -21,10 +21,10 @@ public class Cannon : MonoBehaviour
     GameObject goBar;
     // fire
     public GameObject pfCannonBall;
-    public float timeFireMin = 3f;
-    public float timeFireMax = 10f;
-    float timeFire;
-    float timeFireRandom;
+    //public float timeFireMin = 3f;
+    //public float timeFireMax = 10f;
+    //float timeFire;
+    //float timeFireRandom;
     public int distSqrFire = 40;
     public float offsetFireX;
     public float offsetFireY;
@@ -44,22 +44,23 @@ public class Cannon : MonoBehaviour
         health = healthMax * GameManager.instance.factorStageMax;
         mRigidbody = GetComponent<Rigidbody2D>();
 
-        // sprite(change sprite depanding on looking direction)
-        isLookingRight = false;
-
-
         // fire
-        ResetFire();
+        //ResetFire();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.state == GameManager.State.GameOver) return;
+        // sprite
+        if (!isLookingRight) transform.localScale = new Vector2(1, 1);
+        else transform.localScale = new Vector2(-1, 1);
+
+        if (GameManager.instance.state != GameManager.State.Play) return;
 
         // health bar
         UpdateHealthBar();
 
+        /*
         try
         {
             // check distance from player
@@ -74,6 +75,7 @@ public class Cannon : MonoBehaviour
                 if (distX > 0) isLookingRight = false;
                 else isLookingRight = true;
             }
+            
 
             if (!isLookingRight)
             {
@@ -100,27 +102,18 @@ public class Cannon : MonoBehaviour
                     ResetFire();
                 }
             }
+            
         }
-        /*
-        catch (Exception ex)
-        {
-            //Debug.LogException(ex);
-        }
-        */
         catch
         {
             //Debug.LogError("Exception!");
         }
-
-        // sprite
-        if (!isLookingRight) transform.localScale = new Vector2(1, 1);
-        else transform.localScale = new Vector2(-1, 1);
-
-        // fire if player is close
-        // cannon is looking to left
+        */
 
         
 
+        // fire if player is close
+        // cannon is looking to left
 
         // fire
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Fired"))
@@ -141,12 +134,14 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    /*
     void ResetFire()
     {
         timeFireRandom = UnityEngine.Random.Range(timeFireMin, timeFireMax);
         timeFire = 0f;
     }
 
+    
     void FireCannon()
     {
         timeFire += Time.deltaTime;
@@ -157,6 +152,16 @@ public class Cannon : MonoBehaviour
             timeFireRandom = UnityEngine.Random.Range(timeFireMin, timeFireMax);
             timeFire = 0f;
 
+            // fire trigger
+            animator.SetTrigger("Fire");
+        }
+    }
+    */
+    
+    public void FireCannon()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
             // fire trigger
             animator.SetTrigger("Fire");
         }

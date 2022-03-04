@@ -24,6 +24,7 @@ public class EnemyMove : MonoBehaviour
     public int distSqrMove = 40;
     // animator
     Animator animator;
+    bool isSpriteReverse;
     // rigidbody
     public Rigidbody2D mRigidbody;
     // mass
@@ -66,7 +67,8 @@ public class EnemyMove : MonoBehaviour
     State state;
     // score
     int point;
-    bool isSpriteReverse;
+    public bool isHit;  // box 또는 폭탄을 들고 있는 돼지의 경우 맞았을 때 물건을 떨어뜨리고 일반 돼지로 바꿈
+    
 
     // Start is called before the first frame update
     void Start()
@@ -89,13 +91,13 @@ public class EnemyMove : MonoBehaviour
         timeJump = 0f;
         timeJumpRandom = Random.Range(timeJumpMin, timeJumpMax);
         CalculatePoint();
+        isHit = false;
     }
 
     void CalculatePoint()
     {
         point = (int)(healthMax + speed) * 10;
         if (point < 10) point = 10;
-        //print(point);
     }
 
     // Update is called once per frame
@@ -122,31 +124,21 @@ public class EnemyMove : MonoBehaviour
         }
 
         // sprite(바라보는 방향에 따라 스프라이트 회전)
-        if (state != State.Die)
-        {
-            if (isLookingRight)
-            {
-                if (!isSpriteReverse) transform.localScale = new Vector2(-1, 1);
-                else transform.localScale = new Vector2(1, 1);
-            }
-            else
-            {
-                if (!isSpriteReverse) transform.localScale = new Vector2(1, 1);
-                else transform.localScale = new Vector2(-1, 1);
-            }
-        }
+        SetSprite();
 
         // animator
         animator.SetBool("Idle", isIdle);
         animator.SetBool("Ground", isGround);
         animator.SetBool("Fall", isFalling);
+        if (state == State.Die && !animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        {
+            animator.SetTrigger("Die");
+        }
 
         // return
         if (GameManager.instance.state == GameManager.State.Title
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Ground")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Swallow")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Pick")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Throw")) return;
 
         if (player != null)
@@ -230,7 +222,8 @@ public class EnemyMove : MonoBehaviour
 
             // jump
             timeJump += Time.deltaTime;
-            if (timeJump > timeJumpRandom)
+            if (timeJump > timeJumpRandom
+                && !animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             {
                 timeJump = 0f;
                 timeJumpRandom = Random.Range(timeJumpMin, timeJumpMax);
@@ -267,13 +260,13 @@ public class EnemyMove : MonoBehaviour
 
     public void TurnBack()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Swallow"))
+        FireCannon pigWithMatch = GetComponent<FireCannon>();
+        if (pigWithMatch == null)
         {
             timeTurn = 0f;
             timeTurnRandom = Random.Range(timeTurnMin, timeTurnMax);
             isLookingRight = !isLookingRight;
-        }
-
+        }  
     }
 
     void MakeParticles(GameObject particles, float offsetX, float offsetY)
@@ -307,9 +300,38 @@ public class EnemyMove : MonoBehaviour
 
     }
 
+    public void SetSprite()
+    {
+        if (state != State.Die
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw")
+            && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            if (isLookingRight)
+            {
+                if (!isSpriteReverse) transform.localScale = new Vector2(-1, 1);
+                else transform.localScale = new Vector2(1, 1);
+            }
+            else
+            {
+                if (!isSpriteReverse) transform.localScale = new Vector2(1, 1);
+                else transform.localScale = new Vector2(-1, 1);
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (state == State.Die) return;
+        if (state == State.Die
+            && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            // collider sets to trigger when die
+            Collider2D col = GetComponent<Collider2D>();
+            col.isTrigger = true;
+            mRigidbody.gravityScale = 0f;
+            mRigidbody.velocity = Vector2.zero;
+            return;
+        }
+            
         //print("x:" + collision.contacts[0].point.normalized.x);
         //print("y:" + collision.contacts[0].point.normalized.y);
         float distX = transform.position.x - collision.transform.position.x;
@@ -368,7 +390,7 @@ public class EnemyMove : MonoBehaviour
             // collision with ground
             else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
-
+                    
             }
             else
             {
@@ -425,9 +447,12 @@ public class EnemyMove : MonoBehaviour
 
             animator.SetFloat("Health", health);
             animator.SetTrigger("Damaged");
-            EnemyAttack attack = GetComponent<EnemyAttack>();
-            attack.FinishAttack();
-
+            try
+            {
+                EnemyAttack attack = GetComponent<EnemyAttack>();
+                attack.FinishAttack();
+            }
+            catch { }
             // die
             if (health <= 0f)
             {
@@ -463,5 +488,4 @@ public class EnemyMove : MonoBehaviour
         }
         else healthBar.guage.fillAmount = health / healthMax;
     }
-
 }

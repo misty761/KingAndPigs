@@ -307,7 +307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfBar: {fileID: 3486750623046245679, guid: 1cc05b97bedd6324987bacab144f7567, type: 3}
   bar: {fileID: 0}
-  offsetX: -0.01
   offsetY: 0.1
   guage: {fileID: 0}
   goSource: {fileID: 0}
@@ -343,7 +342,7 @@ MonoBehaviour:
   timeJumpMin: 1
   timeJumpMax: 3
   forceJumpMin: 200
-  forceJumpMax: 330
+  forceJumpMax: 320
   health: 0.9
   healthMax: 0.9
   power: 1

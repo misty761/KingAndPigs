@@ -9,11 +9,10 @@ public class FloatingBar : MonoBehaviour
     GameObject canvas;
     Camera mCamera;
     public RectTransform bar;
-    public float offsetX = 0.25f;
+    public float offsetX = 0f;
     public float offsetY = 0.25f;
     public Image guage;
     public GameObject goSource;
-    EnemyMove enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +21,25 @@ public class FloatingBar : MonoBehaviour
         mCamera = Camera.main;
         bar = Instantiate(pfBar, canvas.transform).GetComponent<RectTransform>();
         guage = bar.GetChild(0).GetComponent<Image>();
-        enemy = GetComponent<EnemyMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 _pos;
-        if (!enemy.isLookingRight)
+        Vector2 _pos = mCamera.WorldToScreenPoint(new Vector2(transform.position.x + offsetX, transform.position.y + offsetY));
+        if (bar == null)
         {
-            _pos = mCamera.WorldToScreenPoint(new Vector2(transform.position.x + offsetX, transform.position.y + offsetY));
-        }
-        else
-        {
-            _pos = mCamera.WorldToScreenPoint(new Vector2(transform.position.x - offsetX, transform.position.y + offsetY));
+            //bar = Instantiate(pfBar, canvas.transform).GetComponent<RectTransform>();
+            //guage = bar.GetChild(0).GetComponent<Image>();
         }
         if (bar != null) bar.position = _pos;
+
+        // destroy gameobject if source gameobject is destroed 
+        //if (goSource == null) Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(bar);
     }
 }

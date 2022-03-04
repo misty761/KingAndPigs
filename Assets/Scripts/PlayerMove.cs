@@ -39,6 +39,7 @@ public class PlayerMove : MonoBehaviour
     PlayerLife playerLife;
     // attack
     public float power = 0.5f;
+    PlayerAttack attack;
     // sound
     public AudioClip audioDamaged;
     public AudioClip audioDie;
@@ -49,13 +50,17 @@ public class PlayerMove : MonoBehaviour
     public bool isJoystickdown;
     public bool isJoystickUp;
     Joystick joystick;
-
-    //button
+    // button
     ButtonJump buttonJump;
+    // damage delay
+    float timeDamage;
+    public float delayDamage = 1f;
+
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        attack = GetComponent<PlayerAttack>();
     }
 
     // Start is called before the first frame update
@@ -65,6 +70,7 @@ public class PlayerMove : MonoBehaviour
         mRigidbody = GetComponent<Rigidbody2D>();
         buttonJump = FindObjectOfType<ButtonJump>();
         playerLife = FindObjectOfType<PlayerLife>();
+        
         Init();
     }
 
@@ -79,11 +85,15 @@ public class PlayerMove : MonoBehaviour
         timeParticles = 0f;
         isJoystickdown = false;
         countJump = 0;
+        timeDamage = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // delay damage
+        timeDamage += Time.deltaTime;
+
         // sprite(change sprite depanding on looking direction)
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
@@ -125,7 +135,6 @@ public class PlayerMove : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("DoorIn")
             || GameManager.instance.state != GameManager.State.Play) return;
 
-
         // joystick
         if (joystick == null)
         {
@@ -142,9 +151,9 @@ public class PlayerMove : MonoBehaviour
             else if (v < -speed) v = -speed;
             //print("joystick h : " + h);
             //print("joystick v : " + v);
-            if (v < -0.99f) isJoystickdown = true;
+            if (v < -speed + 0.01f) isJoystickdown = true;
             else isJoystickdown = false;
-            if (v > 0.99f) isJoystickUp = true;
+            if (v > speed - 0.01f) isJoystickUp = true;
             else isJoystickUp = false;
         }
 
@@ -262,6 +271,13 @@ public class PlayerMove : MonoBehaviour
     }
     */
 
+    public Vector2 DistPlayer(Vector2 pos)
+    {
+        float distX = transform.position.x - pos.x;
+        float distY = transform.position.y - pos.y;
+        return new Vector2(distX, distY);
+    }
+
     void MakeParticles(GameObject particles, float offsetX, float offsetY)
     {
         Vector2 pos = new Vector2(transform.transform.position.x + offsetX, transform.position.y + offsetY);
@@ -312,31 +328,35 @@ public class PlayerMove : MonoBehaviour
 
     public void GetDamage(int damage)
     {
-        // return
-        if (GameManager.instance.state == GameManager.State.GameOver) return;
-        // life --
-        life -= damage;
-        if (life < 0) life =  0;
-        playerLife.UpdatePlayerLife();
-        // animator
-        animator.SetInteger("Life", life);
-        animator.SetTrigger("Damaged");
-        // disable 
-        PlayerAttack attack = GetComponent<PlayerAttack>();
-        attack.FinishAttack();
+        // delay damage
+        if (timeDamage > delayDamage)
+        {
+            timeDamage = 0f;
+            // return
+            if (GameManager.instance.state == GameManager.State.GameOver) return;
+            // life --
+            life -= damage;
+            if (life < 0) life = 0;
+            playerLife.UpdatePlayerLife();
+            // animator
+            animator.SetInteger("Life", life);
+            animator.SetTrigger("Damaged");
+            // disable attack
+            attack.FinishAttack();
 
-        if (life > 0)
-        {
-            // sound
-            SoundManager.instance.PlaySound(audioDamaged, transform.position, 1f); 
-        }
-        // die
-        else
-        {
-            // sound
-            SoundManager.instance.PlaySound(audioDie, transform.position, 1f);
-            // game over
-            GameManager.instance.GameOver();
+            if (life > 0)
+            {
+                // sound
+                SoundManager.instance.PlaySound(audioDamaged, transform.position, 1f);
+            }
+            // die
+            else
+            {
+                // sound
+                SoundManager.instance.PlaySound(audioDie, transform.position, 1f);
+                // game over
+                GameManager.instance.GameOver();
+            }
         }
     }
 
@@ -366,15 +386,15 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
         {
+            // sound
+            SoundManager.instance.PlaySound(SoundManager.instance.audioThud, transform.position, SoundManager.instance.volumeThud);
+
+            isGround = true;
+            countJump = 0;
+
             // player가 위에서 충돌
             if (collision.contacts[0].point.normalized.y < 0f)
             {
-                // sound
-                SoundManager.instance.PlaySound(SoundManager.instance.audioThud, transform.position, SoundManager.instance.volumeThud);
-
-                isGround = true;
-                countJump = 0;
-
                 // particles
                 timeParticles = 0f;
                 MakeParticles(pfParticlesFall, offsetParticlesFallX, offsetParticlesFallY);
@@ -388,6 +408,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Wall"))
         {
             isGround = true;
+            countJump = 0;
         }
     }
     
@@ -397,17 +418,20 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isGround = false;
+            if (mRigidbody.velocity.y > 0f) countJump++;
         }
     }
     public void DoorOut()
     {
         animator.SetTrigger("DoorOut");
+        attack.FinishAttack();
     }
 
     public void DoorIn()
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("DoorIn"))
         animator.SetTrigger("DoorIn");
+        attack.FinishAttack();
     }
 
 

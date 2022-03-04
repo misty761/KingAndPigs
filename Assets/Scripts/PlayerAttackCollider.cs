@@ -24,10 +24,14 @@ public class PlayerAttackCollider : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            // add force
-            AddForce(collision, forceX, forceY);
-            // enemy get damage
             EnemyMove enemy = collision.GetComponent<EnemyMove>();
+            enemy.isHit = true;
+            // add force
+            if (enemy.health > 0f)
+            {
+                AddForce(collision, forceX * 2, forceY);
+            }
+            // enemy get damage
             enemy.GetDamage(player.power);
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Decoration"))
@@ -39,9 +43,28 @@ public class PlayerAttackCollider : MonoBehaviour
         {
             // add force
             AddForce(collision, forceX/2, forceY/2);
+
             // break box
-            Box box = collision.GetComponent<Box>();
-            box.isBroken = true;
+            try
+            {
+                Box box = collision.GetComponent<Box>();
+                box.isBroken = true;
+            }
+            catch
+            {
+                // Enemy box 
+            }
+            
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        {
+            // add force
+            AddForce(collision, forceX * 2, forceY);
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Cannon"))
+        {
+            Cannon cannon = collision.GetComponent<Cannon>();
+            cannon.GetDamage(player.power);
         }
     }
 
@@ -50,6 +73,7 @@ public class PlayerAttackCollider : MonoBehaviour
         Rigidbody2D rb = col.GetComponent<Rigidbody2D>();
         Transform tf = col.GetComponent<Transform>();
         float distX = tf.transform.position.x - player.transform.position.x;
+        rb.velocity = Vector2.zero;
         // object is right of attack
         if (distX > 0f)
         {
