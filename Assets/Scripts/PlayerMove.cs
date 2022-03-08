@@ -172,14 +172,13 @@ public class PlayerMove : MonoBehaviour
 
                     // button jump
                     buttonJump.isTouchDown = false;
-
                     // sound
                     SoundManager.instance.PlaySound(audioJump, transform.position, 1f);
-
                     // particles
                     timeParticles = 0f;
                     MakeParticles(pfParticlesJump, offsetParticlesJumpX, offsetParticlesJumpY);
-
+                    // velocity y sets to 0
+                    mRigidbody.velocity = new Vector2(mRigidbody.velocity.x, 0);
                     // jump
                     mRigidbody.AddForce(new Vector2(0, forceJump));
                     isGround = false;
@@ -192,7 +191,6 @@ public class PlayerMove : MonoBehaviour
                 {
                     // button jump
                     buttonJump.isTouchUp = false;
-
                     // player is jumping up
                     if (mRigidbody.velocity.y > 0f)
                     {
